@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head lang="en">
+
+        <title>Spring Play List Manager</title>
+
+        <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    </head>
+    <body>
+        <div class="container" style="height: 520px">
+            <div data-force="30" class="layer block" style="left: 10%; top: 20px; width: 37%">
+                <div class="layer title">Playlist - released</div>
+                <ul id="foo" class="block__list block__list_tags_red" th:if="${not #lists.isEmpty(files)}">
+                    <li th:each="file : ${files}" th:text="${file.name}" th:object="${file}" th:action="@{/add/managed}" method="post"/>
+                </ul>
+            </div>
+            <div data-force="18" class="layer block" style="left: 48%; top: 20px; width: 40%;">
+                <div class="layer title">Unused - Available files</div>
+                <ul id="bar" class="block__list block__list_tags" th:if="${not #lists.isEmpty(availablefiles)}">
+                    <li th:each="file : ${availablefiles}" th:text="${file.name}" th:object="${file}" th:action="@{/add/managed}" method="post"/>
+                </ul>
+            </div>
+            <div data-force="25" class="layer block" style="left: 85%; top: 20px; width: 20%;">
+                <div class="layer title">Temp - Delete file</div>
+                <ul id="temp" class="block__list block__list_tags">
+                </ul>
+            </div>
+        </div>
+        <!--/*/ <th:block th:include="fragments/footerinc :: footer"></th:block> /*/-->
+    </body>
+</html>
